@@ -1,33 +1,38 @@
 import streamlit as st
-import pickle
+import pandas as pd
 
-# Load model and vectorizer
-model = pickle.load(open("model.pkl", "rb"))
-vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
 
-# Title
+# Load dataset
+df = pd.read_csv("data.csv")
+
+# Train model automatically
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(df["text"])
+y = df["label"]
+
+model = LogisticRegression()
+model.fit(X, y)
+
+# UI
 st.title("📊 AI-Powered Financial Sentiment Analyzer")
 
 st.write("Analyze whether financial news is bullish or bearish")
 
-# Input
 user_input = st.text_area("Enter financial news:")
 
-# Button
 if st.button("Analyze Sentiment"):
     if user_input.strip() != "":
-        input_vector = vectorizer.transform([user_input])
+        input_vec = vectorizer.transform([user_input])
+        prediction = model.predict(input_vec)[0]
 
-        # Prediction
-        prediction = model.predict(input_vector)[0]
-
-        # Confidence score
-        probabilities = model.predict_proba(input_vector)
-        confidence = max(probabilities[0]) * 100
+        prob = model.predict_proba(input_vec)
+        confidence = max(prob[0]) * 100
 
         if prediction == "positive":
-            st.success(f"📈 Positive Sentiment (Bullish)\nConfidence: {confidence:.2f}%")
+            st.success(f"📈 Bullish (Confidence: {confidence:.2f}%)")
         else:
-            st.error(f"📉 Negative Sentiment (Bearish)\nConfidence: {confidence:.2f}%")
+            st.error(f"📉 Bearish (Confidence: {confidence:.2f}%)")
     else:
-        st.warning("Please enter some text")
+        st.warning("Please enter text")

@@ -1,0 +1,48 @@
+🧪 TEST CASES (WITH EXPECTED OUTPUT)
+
+Company reports strong quarterly profits → Positive 📈
+
+Stock market rises due to positive economic outlook → Positive 📈
+
+Infosys beats earnings expectations this quarter → Positive 📈
+
+Reliance Industries posts record profits in Q4 results → Positive 📈
+
+Banking sector shows strong recovery → Positive 📈
+
+Investors are optimistic about future growth → Positive 📈
+
+New government policy boosts infrastructure sector → Positive 📈
+
+Tech stocks rally after strong earnings → Positive 📈
+
+Market crashes due to global recession fears → Negative 📉
+
+Company reports huge losses and layoffs → Negative 📉
+
+Stock prices fall due to inflation concerns → Negative 📉
+
+Banking stocks fall due to rising NPAs → Negative 📉
+
+Investors panic due to economic slowdown → Negative 📉
+
+IT sector declines after poor quarterly results → Negative 📉
+
+Oil prices crash impacting energy sector → Negative 📉
+
+Company faces bankruptcy concerns → Negative 📉
+
+⚠️ ADVANCED / TRICKY TESTS
+
+Company profits increased but future outlook uncertain → Mixed (model may vary)
+
+Market is stable with no major changes → Model will still give Positive/Negative
+
+Company announces new product launch → May vary depending on model
+
+🎯 HOW TO USE
+
+👉 Copy one sentence
+👉 Paste in your app
+👉 Click analyze
+👉 Compare result
